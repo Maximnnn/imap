@@ -1,0 +1,20 @@
+{
+    "name": "maximnnn/mail",
+    "authors": [
+        {
+            "name": "m.usakovs",
+            "email": "maximnnn@inbox.lv"
+        }
+    ],
+    "autoload": {
+        "psr-4": {
+          "Mail\\": "lib/"
+        }
+    },
+    "require": {
+        "symfony/var-dumper": "^4.3",
+        "ext-imap" : "*",
+        "ext-mailparse": "*",
+        "ext-json": "*"
+    }
+}
