@@ -28,14 +28,14 @@ class Mail
 
     public function getPlain(): ?string
     {
-        $plain = $this->structure->plain();
+        $plain = $this->structure->part('plain');
 
         return $plain ? $this->imap->getBody($this->uid, $plain['part']) : null;
     }
 
     public function getHtml(): ?string
     {
-        $html = $this->structure->plain();
+        $html = $this->structure->part('html');
 
         return $html ? $this->imap->getBody($this->uid, $html['part']) : null;
     }

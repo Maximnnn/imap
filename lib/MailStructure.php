@@ -39,36 +39,12 @@ class MailStructure implements \JsonSerializable
         return $attachments;
     }
 
-    public function plain(): ?array
+    public function part(string $search)
     {
         $plain = null;
 
-        foreach ($this->structure->parts as $k => $part) {
-            if (strtolower($part->subtype) === 'plain') {
-
-                $plain = [
-                    'part' => $k + 1,
-                    'encoding' => $part->encoding,
-                    'type' => $part->type,
-                    'bytes' => $part->bytes,
-                    'lines' => $part->lines
-                ];
-
-                foreach ($part->parameters as $parameter) if (strtolower($parameter->attribute) === 'charset') {
-                    $plain['charset'] = $parameter->value;
-                }
-            }
-        }
-
-        return $plain;
-    }
-
-    public function html(): ?array
-    {
-        $plain = null;
-
-        foreach ($this->structure->parst as $k => $part) {
-            if (strtolower($part->subtype) === 'html') {
+        foreach ($this->structure->parts ?? [$this->structure] as $k => $part) {
+            if (strtolower($part->subtype) === strtolower($search)) {
 
                 $plain = [
                     'part' => $k + 1,
